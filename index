@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rafael Lara Tello | Psicología, Investigación & IA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fb;
+            color: #1e2a3e;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header & Language Switcher */
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 1.5rem;
+        }
+
+        .lang-btn {
+            background: #2c5f8a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            margin: 0 0.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #1a3e5c;
+            box-shadow: 0 0 0 2px #ffb74d;
+        }
+
+        .lang-btn:hover {
+            background: #1f4e72;
+        }
+
+        /* Secciones de idioma */
+        .lang-section {
+            display: none;
+        }
+
+        .lang-section.active-lang {
+            display: block;
+        }
+
+        /* Tarjetas y estilos */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+
+        .hero-img {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .hero-img img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #cbd5e1;
+            background: #eef2f5;
+        }
+
+        .placeholder-note {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        .hero-text {
+            flex: 2;
+        }
+
+        .logo-small {
+            max-width: 80px;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #0f2b3d;
+        }
+
+        .badge {
+            background: #e9ecef;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .highlight {
+            background: #ffecb3;
+            color: #b45f06;
+            font-weight: bold;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #1e4663;
+        }
+
+        .btn-group {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-cal {
+            background: #2c3e66;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .btn-wa:hover, .btn-cal:hover {
+            filter: brightness(1.05);
+            transform: scale(1.02);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            border-left: 5px solid #ffb74d;
+            padding-left: 1rem;
+        }
+
+        .cert-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .cert-item {
+            background: #fff5e6;
+            border-radius: 1rem;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid #ddd;
+            color: #5a6e7c;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 700px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn active" data-lang="es">🇪🇸 Español</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+
+    <!-- VERSIÓN ESPAÑOL -->
+    <div id="es" class="lang-section active-lang">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-img">
+                <!-- Reemplaza [TU_FOTO_PRINCIPAL.jpg] por el nombre real de tu imagen -->
+                <img src="[TU_FOTO_PRINCIPAL.jpg]" alt="Rafael Lara Tello" onerror="this.src='https://via.placeholder.com/220x220?text=Foto+principal'">
+                <div class="placeholder-note">📌 Reemplaza [TU_FOTO_PRINCIPAL.jpg] con tu foto</div>
+                <img src="LogoPsicoR_2017_000.jpg" alt="Logo PSICOR" class="logo-small" style="margin-top: 10px; max-width: 100px;">
+            </div>
+            <div class="hero-text">
+                <h1>Rafael Lara Tello</h1>
+                <p><strong>Psicólogo Clínico · Corriente Existencial · Enfoque Sistémico</strong></p>
+                <p>➕ Asesor Metodológico en Investigación · Analista de IA para LLM</p>
+                <div>
+                    <span class="badge highlight">🏅 Reconocimiento al esfuerzo y perseverancia (UNLA)</span>
+                    <span class="badge">🎓 Pedagogía Sistémica · Marianne Franke-Griksch</span>
+                    <span class="badge">📊 Investigación multidisciplinaria</span>
+                    <span class="badge">🤖 Entrenamiento de LLM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicios -->
+        <div class="services">
+            <div class="card">
+                <h3>🧠 Atención Psicológica Online</h3>
+                <p>Psicología clínica desde la corriente existencial y enfoque sistémico. Acompañamiento a personas, parejas y familias. Especial sensibilidad en procesos de sentido, libertad y vínculos.</p>
+                <p><strong>Formación destacada:</strong> Pedagogía Sistémica con <em>Marianne Franke-Griksch</em> (2013) · Diplomado en Pedagogía Sistémica UDEM · Pensamiento Sistémico UNAM.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/[TU_NUMERO_WHATSAPP]" class="btn-wa" target="_blank">📱 Consultar por WhatsApp</a>
+                    <a href="[TU_ENLACE_CALENDLY]" class="btn-cal" target="_blank">📅 Reservar sesión</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>📐 Asesoría Metodológica</h3>
+                <p>Tesis, estudios de mercado, instrumentos psicométricos. Experiencia en validación de pruebas, análisis estadístico (software especializado) y diseño de investigación cualitativa/cuantitativa.</p>
+                <p><strong>+10 años</strong> como docente de investigación y subdirector de facultad. Colaborador en acreditaciones FIMPES.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/[TU_NUMERO_WHATSAPP]" class="btn-wa" target="_blank">📱 Cotizar asesoría</a>
+                    <a href="[TU_ENLACE_CALENDLY]" class="btn-cal" target="_blank">📅 Agendar consultoría</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>🤖 Analista de IA · LLM</h3>
+                <p>Corroboración de datos, entrenamiento de modelos de lenguaje, fine-tuning y validación de contenido. Experiencia en edición, ortografía, redacción y estructura lógica aplicada a datasets.</p>
+                <p>Conocimientos en Python (básico), lógica computacional y pensamiento científico aplicado a IA.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/[TU_NUMERO_WHATSAPP]" class="btn-wa" target="_blank">📱 Proyectos IA</a>
+                    <a href="[TU_ENLACE_CALENDLY]" class="btn-cal" target="_blank">📅 Reunión técnica</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formación y certificaciones clave -->
+        <div class="section-title">📜 Formación y reconocimientos</div>
+        <div class="cert-grid">
+            <div class="cert-item">🎓 Pedagogía Sistémica – Marianne Franke-Griksch (2013)</div>
+            <div class="cert-item">📘 Diplomado Investigación Multidisciplinaria (UDEM)</div>
+            <div class="cert-item">🧪 Pruebas HTP / Minnesota / Desiderativo (UNLA)</div>
+            <div class="cert-item">🌐 Tutores EaD – CREFAL (2006)</div>
+            <div class="cert-item">🧠 Pensamiento Sistémico – UNAM (2017)</div>
+            <div class="cert-item">📊 INEGI: Censos, Georreferenciación, ENIGH (2008-2022)</div>
+        </div>
+
+        <!-- Experiencia breve -->
+        <div class="section-title">💼 Experiencia relevante</div>
+        <p><strong>Subdirector Facultad de Psicología – UDEM (2012-2015)</strong> · Acreditación FIMPES · Docencia investigación · Clínica universitaria.<br>
+        <strong>Cofundador Depto. Psicopedagógico – UNLA (2001-2006)</strong> · Atención clínica y docencia preparatoria/posgrado.<br>
+        <strong>Editor académico – Knotion (2015-2020)</strong> · Revisión y coherencia de recursos educativos.<br>
+        <strong>Trabajo de campo – INEGI</strong> · Estudios socioeconómicos y cartografía.</p>
+
+        <div class="section-title">🔗 Redes profesionales</div>
+        <p>🌐 [TU_LINKEDIN_URL]  |  🐦 [TU_TWITTER_URL]  |  📷 [TU_INSTAGRAM_PROFESIONAL]</p>
+        <p class="placeholder-note">✏️ Reemplaza los textos entre corchetes con tus enlaces reales.</p>
+    </div>
+
+    <!-- VERSIÓN INGLÉS -->
+    <div id="en" class="lang-section">
+        <div class="hero">
+            <div class="hero-img">
+                <img src="[TU_FOTO_PRINCIPAL.jpg]" alt="Rafael Lara Tello" onerror="this.src='https://via.placeholder.com/220x220?text=Main+photo'">
+                <div class="placeholder-note">📌 Replace [TU_FOTO_PRINCIPAL.jpg] with your photo</div>
+                <img src="LogoPsicoR_2017_000.jpg" alt="PSICOR Logo" class="logo-small" style="margin-top: 10px; max-width: 100px;">
+            </div>
+            <div class="hero-text">
+                <h1>Rafael Lara Tello</h1>
+                <p><strong>Clinical Psychologist · Existential Approach · Systemic Focus</strong></p>
+                <p>➕ Methodological Research Advisor · AI Analyst for LLM Training & Data Corroboration</p>
+                <div>
+                    <span class="badge highlight">🏅 Perseverance Award (UNLA)</span>
+                    <span class="badge">🎓 Systemic Pedagogy · Marianne Franke-Griksch</span>
+                    <span class="badge">📊 Psychometrics & Market Research</span>
+                    <span class="badge">🤖 LLM Fine-tuning</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="services">
+            <div class="card">
+                <h3>🧠 Online Psychological Care</h3>
+                <p>Clinical psychology from an existential & systemic perspective. Support for individuals, couples, and families. Focus on meaning, freedom, and relational dynamics.</p>
+                <p><strong>Key training:</strong> Systemic Pedagogy with <em>Marianne Franke-Griksch</em> (2013) · Systemic Thinking UNAM.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/[TU_NUMERO_WHATSAPP]" class="btn-wa" target="_blank">📱 WhatsApp inquiry</a>
+                    <a href="[TU_ENLACE_CALENDLY]" class="btn-cal" target="_blank">📅 Book session</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>📐 Methodological Advisory</h3>
+                <p>Thesis consulting, market research, psychometric instruments. Experience in test validation, statistical analysis, and mixed-methods research design.</p>
+                <p><strong>10+ years</strong> teaching research & former Associate Dean of Psychology Faculty.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/[TU_NUMERO_WHATSAPP]" class="btn-wa" target="_blank">📱 Get a quote</a>
+                    <a href="[TU_ENLACE_CALENDLY]" class="btn-cal" target="_blank">📅 Schedule consulting</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>🤖 AI Analyst · LLM</h3>
+                <p>Data corroboration, LLM training, fine-tuning and content validation. Expertise in copyediting, logical structure, and scientific thinking applied to datasets.</p>
+                <p>Basic Python, computational logic, and scientific reasoning.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/[TU_NUMERO_WHATSAPP]" class="btn-wa" target="_blank">📱 AI projects</a>
+                    <a href="[TU_ENLACE_CALENDLY]" class="btn-cal" target="_blank">📅 Technical meeting</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">📜 Key Certifications & Awards</div>
+        <div class="cert-grid">
+            <div class="cert-item">🎓 Systemic Pedagogy – Marianne Franke-Griksch (2013)</div>
+            <div class="cert-item">📘 Multidisciplinary Research Diploma (UDEM)</div>
+            <div class="cert-item">🧪 HTP / Minnesota / Desiderativo Tests (UNLA)</div>
+            <div class="cert-item">🌐 Online Tutoring – CREFAL (2006)</div>
+            <div class="cert-item">🧠 Systemic Thinking – UNAM (2017)</div>
+            <div class="cert-item">📊 INEGI: Census, Georeferencing, ENIGH (2008-2022)</div>
+        </div>
+
+        <div class="section-title">💼 Relevant Experience</div>
+        <p><strong>Associate Dean of Psychology – UDEM (2012-2015)</strong> · FIMPES accreditation · Research professor · University clinic.<br>
+        <strong>Co-founder Psychopedagogical Dept – UNLA (2001-2006)</strong> · Clinical care & teaching.<br>
+        <strong>Academic Editor – Knotion (2015-2020)</strong> · Educational resources coherence.<br>
+        <strong>Fieldwork – INEGI</strong> · Socioeconomic studies & mapping.</p>
+
+        <div class="section-title">🔗 Professional Networks</div>
+        <p>🌐 [TU_LINKEDIN_URL]  |  🐦 [TU_TWITTER_URL]  |  📷 [TU_INSTAGRAM_PROFESSIONAL]</p>
+        <p class="placeholder-note">✏️ Replace brackets with your actual links.</p>
+    </div>
+
+    <footer>
+        <p>🧠 Rafael Lara Tello · Psicólogo clínico · Asesor metodológico · Analista IA</p>
+        <p>© 2025 · Atención psicológica online y consultoría especializada</p>
+    </footer>
+</div>
+
+<script>
+    const btns = document.querySelectorAll('.lang-btn');
+    const sections = {
+        es: document.getElementById('es'),
+        en: document.getElementById('en')
+    };
+
+    function switchLang(lang) {
+        Object.keys(sections).forEach(l => {
+            sections[l].classList.remove('active-lang');
+        });
+        sections[lang].classList.add('active-lang');
+        btns.forEach(btn => {
+            if(btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            switchLang(lang);
+        });
+    });
+</script>
+</body>
+</html>
