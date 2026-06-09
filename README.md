@@ -1,6 +1,6 @@
 # Rafael Lara Tello – Psicólogo, Investigación e IA
 
-🌐 **Sitio profesional**: [https://tusuario.github.io/nombre-repo/](https://tusuario.github.io/nombre-repo/)
+🌐 **Sitio profesional**: [https://tusuario.github.io/nombre-repo/](https://rafalate.online/)
 
 Servicios:
 - Atención psicológica online (existencial-sistémica)
